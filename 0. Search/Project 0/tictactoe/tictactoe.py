@@ -116,6 +116,16 @@ def utility(board):
     # Check how to handle exception when a non terminal board is received.
 
 
+
+'''
+The minimax(board) function determines the optimal action for the current player on the board. 
+It first checks if the board is in a terminal state using the terminal(board) function. 
+If it is terminal, it returns None as there are no valid actions. 
+Otherwise, it checks which player's turn it is using the player(board) function. 
+If it is X's turn, it calls the max_value(board) function and returns the corresponding action. 
+If it is O's turn, it calls the min_value(board) function and returns the corresponding action.
+'''
+
 def minimax(board):
     """
     Returns the optimal action for the current player on the board.
@@ -129,7 +139,14 @@ def minimax(board):
         else:
             value, move = min_value(board)
             return move
-
+'''
+The max_value(board) function calculates the maximum utility value that the maximizing player (X) can achieve on the given board. 
+If the board is in a terminal state, it returns the utility value of the board and None. 
+It initializes v to negative infinity and move to None. 
+It iterates over the possible actions on the board and calls the min_value(result(board, action)) function. 
+It updates v and move if the utility value returned by min_value() is greater than the current maximum v value. 
+If the maximum value v is 1 (indicating a winning move for X), it returns v and the corresponding action.
+'''
 
 def max_value(board):
     if terminal(board):
@@ -148,6 +165,15 @@ def max_value(board):
 
     return v, move
 
+'''
+The min_value(board) function calculates the minimum utility value that the minimizing player (O) can achieve on the given board. 
+It follows a similar structure to max_value(board), but it initializes v to positive infinity and updates it if the utility value returned by max_value() is smaller than the current minimum v value. 
+If the minimum value v is -1 (indicating a winning move for O), it returns v and the corresponding action.
+
+Overall, the code applies the minimax algorithm to determine the optimal action for the current player. 
+It incorporates the max_value() and min_value() functions to evaluate the utility values of possible actions and selects the action that leads to the maximum utility for player X or the minimum utility for player O.
+'''
+
 
 def min_value(board):
     if terminal(board):
@@ -165,3 +191,4 @@ def min_value(board):
                 return v, move
 
     return v, move
+
